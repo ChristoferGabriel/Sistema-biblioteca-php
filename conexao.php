@@ -14,7 +14,7 @@ function conectar()
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->exec("SET NAMES utf8");
 
-        return $pdo;
+        return $pdo; 
 
     } catch (PDOException $e) {
         die("Erro na conexão: " . $e->getMessage());

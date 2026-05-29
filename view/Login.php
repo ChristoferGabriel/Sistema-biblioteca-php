@@ -1,3 +1,14 @@
+<?php 
+    session_start();
+    require ('conexao.php');
+
+
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="">
 <head>
@@ -10,9 +21,15 @@
     <h2>LOGIN</h2>
     <form action="">
         <label>
-            <input type="text" name="E-mail" />
-            <input type="text" name="Senha" />
+            Email
+            <input type="email" name="E-mail" />
 
+        </label>
+    </form>
+    <form action="">
+        <label>
+            Senha
+            <input type="password" name="Senha">
         </label>
     </form>
     
