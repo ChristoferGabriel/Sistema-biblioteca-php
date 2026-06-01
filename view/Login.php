@@ -1,39 +1,23 @@
-<?php 
-    session_start();
-    require ('conexao.php');
-
-
-
-
-
-
-?>
-
 <!DOCTYPE html>
-<html lang="">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
 <body>
+    <h1>Login do Caixa</h1>
 
-    <h2>LOGIN</h2>
-    <form action="">
-        <label>
-            Email
-            <input type="email" name="E-mail" />
+    <form method="POST" action="LoginController.php">
 
-        </label>
+        <input type="email" name="email" placehobr><br>
+
+        <input type="password" name="senha" placeholder="Senha" required><br>
+        
+        <button type="submit">Entrar</button>
+
     </form>
-    <form action="">
-        <label>
-            Senha
-            <input type="password" name="Senha">
-        </label>
-    </form>
-    
-    <button type="submit"> Logar </button>
-</body> 
+
+</body>
 </html>
+
+
 
