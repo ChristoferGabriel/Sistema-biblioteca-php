@@ -1,6 +1,6 @@
 <?php
-require_once _DIR_ . 'config/conexao.php';
-require_once _DIR_ . 'models/Livro.php';
+require_once __DIR__ . 'config/conexao.php';
+require_once __DIR__ . 'models/Livro.php';
 
 class LivroController {
     private $livroModel;
@@ -10,7 +10,7 @@ class LivroController {
     }
     public function index() {
         $livros = $this->livroModel->listar();
-        require_once _DIR_ . '/../views/livros/listar.php';
+        require_once __DIR__ . '/../views/livros/listar.php';
     }
     public function armazenar() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {

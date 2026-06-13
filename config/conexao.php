@@ -1,20 +1,34 @@
 <?php
-function conectar()
-{
-    $localhost = "127.0.0.1";
-    $usuario = "root";
-    $senha = "";
 
-    try {
-        $pdo = new PDO("mysql:host=$localhost;port=3307;dbname=biblioteca", $usuario, $senha);
-        
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $pdo->exec("SET NAMES utf8");
+class Conexao {
+    private static $instance = null;
 
-        return $pdo; 
+    public static function getConexao() {
+        if (self::$instance === null) {
+            try {
+                $host = 'localhost';
+                $dbname = 'seu_banco_de_dados';
+                $user = 'root';
+                $password = '';
+                $options = [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8mb4"
+                ];
 
-    } catch (PDOException $e) {
-        die("Erro na conexão: " . $e->getMessage());
+                self::$instance = new PDO(
+                    "mysql:host=$host;dbname=$dbname", 
+                    $user, 
+                    $password, 
+                    $options
+                );
+
+            } catch (PDOException $e) {
+                die("Erro crítico de conexão: " . $e->getMessage());
+            }
+        }
+
+        return self::$instance;
     }
 }
 ?>
