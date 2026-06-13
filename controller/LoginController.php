@@ -5,7 +5,7 @@ require_once 'config/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $pdo = conectar();
+    $pdo = Conexao::getConexao();
 
     $sql = $pdo->prepare("SELECT * FROM caixa WHERE usuario = :usuario");
         $sql->execute([
