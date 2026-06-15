@@ -1,30 +1,31 @@
 <?php
+
 session_start();
 
-require_once 'config/conexao.php';
+require_once "../config/conexao.php";
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
-    $pdo = Conexao::getConexao();
+$email = $_POST['email'];
+$senha = $_POST['senha'];
 
-    $sql = $pdo->prepare("SELECT * FROM caixa WHERE usuario = :usuario");
-        $sql->execute([
-        ':usuario' => $_POST['usuario']
-    ]);
+$sql = "SELECT * FROM caixa
+        WHERE email = :email";
 
-    $caixa = $sql->fetch(PDO::FETCH_ASSOC);
+$stmt = $pdo->prepare($sql);
 
-    if ($caixa) {
-        if (password_verify($_POST['senha'], $caixa['senha'])) {
-            
-            $_SESSION['caixa'] = $caixa['usuario'];
-            header("Location: ../views/menu.php");
-            exit; 
-        }
-    }
-    echo "Login inválido";
+$stmt->execute([
+    ':email' => $email
+]);
 
-} else {
-    header("Location: ../views/login.php");
-    exit;
+$caixa = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if($caixa && password_verify($senha, $caixa['senha'])){
+
+    $_SESSION['caixa'] = $caixa['nome'];
+
+    header("Location: ../views/home.php");
+
+}else{
+
+    echo "Email ou senha inválidos.";
+
 }
