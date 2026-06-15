@@ -1,28 +1,41 @@
 <?php
-require_once __DIR__ . 'config/conexao.php';
-require_once __DIR__ . 'models/Livro.php';
 
-class LivroController {
-    private $livroModel;
+require_once '../config/conexao.php';
+require_once '../models/Livro.php';
 
-    public function __construct($pdo) {
-        $this->livroModel = new Livro($pdo);
-    }
-    public function index() {
-        $livros = $this->livroModel->listar();
-        require_once __DIR__ . '/../views/livros/listar.php';
-    }
-    public function armazenar() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $titulo = $_POST['titulo'] ?? '';
-            $autor = $_POST['autor'] ?? '';
-            $ano = $_POST['ano_publicacao'] ?? null;
+$livro = new Livro($pdo);
 
-            if (!empty($titulo) && !empty($autor)) {
-                $this->livroModel->cadastrar($titulo, $autor, $ano);
-                header('Location: index.php?classe=livro&acao=index');
-                exit;
-            }
-        }
-    }
+$acao = $_REQUEST['acao'] ?? '';
+
+switch($acao)
+{
+    case 'cadastrar':
+
+        $livro->cadastrar(
+            $_POST['titulo'],
+            $_POST['autor'],
+            $_POST['ano']
+        );
+
+        header('Location: ../views/livros/listar.php');
+        break;
+
+    case 'editar':
+
+        $livro->editar(
+            $_POST['id'],
+            $_POST['titulo'],
+            $_POST['autor'],
+            $_POST['ano']
+        );
+
+        header('Location: ../views/livros/listar.php');
+        break;
+
+    case 'excluir':
+
+        $livro->excluir($_GET['id']);
+
+        header('Location: ../views/livros/listar.php');
+        break;
 }
