@@ -43,11 +43,7 @@ if(isset($_SESSION['caixa'])) {
         <button type="submit">
             Entrar
         </button>
-
-        <a href="recuperarSenha.php">
-            Esqueci minha senha
-        </a>
-
+        
     </form>
 
 </div>
