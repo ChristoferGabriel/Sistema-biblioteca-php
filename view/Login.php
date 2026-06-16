@@ -8,32 +8,49 @@ if(isset($_SESSION['caixa'])) {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Biblioteca</title>
+
+    <link rel="stylesheet" href="../assets/style.css">
 </head>
+
 <body>
 
-<h2>Login do Caixa</h2>
+<div class="login-container">
 
-<form action="../controllers/LoginController.php" method="POST">
+    <form class="login-card"
+          action="../controllers/LoginController.php"
+          method="POST">
 
-    <label>Email:</label><br>
-    <input type="email" name="email" required><br><br>
+        <h2> Sistema Biblioteca</h2>
 
-    <label>Senha:</label><br>
-    <input type="password" name="senha" required><br><br>
+        <label>Email</label>
+        <input type="email"
+               name="email"
+               placeholder="Digite seu email"
+               required>
 
-    <button type="submit">
-        Entrar
-    </button>
+        <label>Senha</label>
+        <input type="password"
+               name="senha"
+               placeholder="Digite sua senha"
+               required>
 
-</form>
+        <button type="submit">
+            Entrar
+        </button>
 
-<a href="recuperarSenha.php">
-    Esqueci minha senha
-</a>
+        <a href="recuperarSenha.php">
+            Esqueci minha senha
+        </a>
+
+    </form>
+
+</div>
 
 </body>
 </html>
