@@ -13,8 +13,8 @@ class Livro
 
     public function cadastrar($titulo, $autor, $ano)
     {
-        $sql = "INSERT INTO livros(titulo, autor, ano)
-                VALUES(:titulo, :autor, :ano)";
+        $sql = "INSERT INTO livros(titulo, autor, ano_publicacao)
+                VALUES(:titulo, :autor, :ano_publicacao)";
 
         $stmt = $this->pdo->prepare($sql);
 
@@ -53,7 +53,7 @@ class Livro
         $sql = "UPDATE livros
                 SET titulo = :titulo,
                     autor = :autor,
-                    ano = :ano
+                    ano_publicacao = :ano_publicacao
                 WHERE id = :id";
 
         $stmt = $this->pdo->prepare($sql);
