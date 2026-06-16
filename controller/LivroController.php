@@ -3,6 +3,8 @@
 require_once '../config/conexao.php';
 require_once '../models/Livro.php';
 
+$pdo = Conexao::getConexao();
+
 $livro = new Livro($pdo);
 
 $acao = $_REQUEST['acao'] ?? '';

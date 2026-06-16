@@ -3,7 +3,7 @@ require_once 'conexao.php';
 
 $pdo = Conexao::getConexao();
 
-require_once 'controllers/LivroController.php';
+require_once 'controller/LivroController.php';
 
 try {
     $stmt = $pdo->prepare("SELECT * FROM usuarios LIMIT 5");

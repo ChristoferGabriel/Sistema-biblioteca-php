@@ -22,7 +22,7 @@ if(!isset($_SESSION['caixa'])){
 
 <p>
     Bem-vindo,
-    <?php echo $_SESSION['caixa']; ?>
+    <?php echo htmlspecialchars($_SESSION['caixa']); ?>
 </p>
 
 <hr>
