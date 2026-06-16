@@ -40,3 +40,55 @@ switch($acao)
         );
         break;
 }
+
+<form action="../../controllers/EmprestimoController.php"
+      method="POST">
+
+    <input type="hidden"
+           name="acao"
+           value="cadastrar">
+
+    <label>Livro:</label>
+
+    <select name="livro_id">
+
+        <?php foreach($livros as $livro): ?>
+
+            <option value="<?= $livro['id'] ?>">
+                <?= $livro['titulo'] ?>
+            </option>
+
+        <?php endforeach; ?>
+
+    </select>
+
+    <br><br>
+
+    <label>Usuário:</label>
+
+    <select name="usuario_id">
+
+        <?php foreach($usuarios as $usuario): ?>
+
+            <option value="<?= $usuario['id'] ?>">
+                <?= $usuario['nome'] ?>
+            </option>
+
+        <?php endforeach; ?>
+
+    </select>
+
+    <br><br>
+
+    <label>Data prevista:</label>
+
+    <input type="date"
+           name="data_prevista">
+
+    <br><br>
+
+    <button type="submit">
+        Emprestar
+    </button>
+
+</form>
