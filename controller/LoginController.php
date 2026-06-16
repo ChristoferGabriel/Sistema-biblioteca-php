@@ -3,6 +3,7 @@
 session_start();
 
 require_once "../config/conexao.php";
+$pdo = Conexao::getConexao();
 
 $email = $_POST['email'];
 $senha = $_POST['senha'];
