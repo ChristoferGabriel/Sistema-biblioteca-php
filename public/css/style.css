@@ -1,0 +1,112 @@
+/* Reset simples */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f4f6f9;
+    font-family:Arial, Helvetica, sans-serif;
+    min-height:100vh;
+}
+
+/* Navbar */
+
+.navbar{
+    box-shadow:0 2px 10px rgba(0,0,0,.1);
+}
+
+/* Títulos */
+
+h1,h2,h3{
+    color:#343a40;
+}
+
+/* Cards */
+
+.card{
+    border:none;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.08);
+}
+
+/* Botões */
+
+.btn{
+    border-radius:8px;
+}
+
+/* Rodapé */
+
+footer{
+    margin-top:50px;
+    padding:20px;
+    text-align:center;
+    background:#212529;
+    color:white;
+}
+
+.login-container{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+}
+
+.login-card{
+
+    width:400px;
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:0 0 20px rgba(0,0,0,.1);
+}
+
+.login-card h2{
+
+    text-align:center;
+
+    margin-bottom:20px;
+}
+
+.livro-card{
+
+    transition:.3s;
+}
+
+.livro-card:hover{
+
+    transform:translateY(-5px);
+
+    cursor:pointer;
+}
+
+.dashboard-card{
+
+    padding:20px;
+
+    background:white;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+.dashboard-number{
+
+    font-size:40px;
+
+    font-weight:bold;
+}
