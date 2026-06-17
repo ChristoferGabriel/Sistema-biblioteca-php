@@ -2,77 +2,72 @@
 
 class Usuario
 {
-    private $pdo;
+    private ?int $id;
+    private string $nome;
+    private string $email;
+    private string $senha;
+    private ?string $tokenRecuperacao;
 
-    public function __construct($pdo)
-    {
-        $this->pdo = $pdo;
+    public function __construct(
+        ?int $id,
+        string $nome,
+        string $email,
+        string $senha,
+        ?string $tokenRecuperacao = null
+    ) {
+        $this->id = $id;
+        $this->nome = $nome;
+        $this->email = $email;
+        $this->senha = $senha;
+        $this->tokenRecuperacao = $tokenRecuperacao;
     }
 
-    public function cadastrar($nome, $cpf, $telefone)
+    // GETTERS
+
+    public function getId(): ?int
     {
-        $sql = "INSERT INTO usuarios (nome, cpf, telefone)
-                VALUES (:nome, :cpf, :telefone)";
-
-        $stmt = $this->pdo->prepare($sql);
-
-        return $stmt->execute([
-            ':nome' => $nome,
-            ':cpf' => $cpf,
-            ':telefone' => $telefone
-        ]);
+        return $this->id;
     }
 
-    public function listar()
+    public function getNome(): string
     {
-        $sql = "SELECT * FROM usuarios";
-
-        $stmt = $this->pdo->query($sql);
-
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $this->nome;
     }
 
-    public function buscarPorId($id)
+    public function getEmail(): string
     {
-        $sql = "SELECT * FROM usuarios
-                WHERE id = :id";
-
-        $stmt = $this->pdo->prepare($sql);
-
-        $stmt->execute([
-            ':id' => $id
-        ]);
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        return $this->email;
     }
 
-    public function editar($id, $nome, $cpf, $telefone)
+    public function getSenha(): string
     {
-        $sql = "UPDATE usuarios
-                SET nome = :nome,
-                    cpf = :cpf,
-                    telefone = :telefone
-                WHERE id = :id";
-
-        $stmt = $this->pdo->prepare($sql);
-
-        return $stmt->execute([
-            ':id' => $id,
-            ':nome' => $nome,
-            ':cpf' => $cpf,
-            ':telefone' => $telefone
-        ]);
+        return $this->senha;
     }
 
-    public function excluir($id)
+    public function getTokenRecuperacao(): ?string
     {
-        $sql = "DELETE FROM usuarios
-                WHERE id = :id";
+        return $this->tokenRecuperacao;
+    }
 
-        $stmt = $this->pdo->prepare($sql);
+    // SETTERS
 
-        return $stmt->execute([
-            ':id' => $id
-        ]);
+    public function setNome(string $nome): void
+    {
+        $this->nome = $nome;
+    }
+
+    public function setEmail(string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function setSenha(string $senha): void
+    {
+        $this->senha = $senha;
+    }
+
+    public function setTokenRecuperacao(?string $token): void
+    {
+        $this->tokenRecuperacao = $token;
     }
 }

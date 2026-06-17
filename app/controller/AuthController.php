@@ -72,4 +72,55 @@ class AuthController
         header('Location: index.php');
         exit;
     }
+
+    public function esqueciSenha()
+    {
+        require_once
+            '../app/views/auth/esqueci-senha.php';
+    }
+
+    public function enviarLinkRecuperacao() 
+    {   
+        $email = $_POST['email'];
+
+        $usuario =
+        $this->usuarioDAO->buscarPorEmail($email);
+
+    if (!$usuario) {
+        return;
+    }
+
+    $token =
+        bin2hex(random_bytes(32));
+
+    $this->usuarioDAO
+         ->salvarTokenRecuperacao(
+             $usuario->getId(),
+             $token
+         );
+
+    // enviar email
+    }
+
+    public function redefinirSenha()
+    {
+        require_once
+            '../app/views/auth/redefinir-senha.php';
+    }
+
+    public function salvarNovaSenha()
+    {
+        $token = $_POST['token'];
+
+        $senha = password_hash(
+            $_POST['senha'],
+            PASSWORD_DEFAULT
+        );
+
+        $this->usuarioDAO
+            ->alterarSenhaPorToken(
+                 $token,
+                 $senha
+             );
+    }
 }
