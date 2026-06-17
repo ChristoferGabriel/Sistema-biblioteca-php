@@ -1,9 +1,10 @@
 <?php
 
 require_once '../config/conexao.php';
-require_once '../models/Livro.php';
 
 $pdo = Conexao::getConexao();
+
+require_once '../models/Livro.php';
 
 $livro = new Livro($pdo);
 
@@ -19,7 +20,7 @@ switch($acao)
             $_POST['ano']
         );
 
-        header('Location: ../views/livros/listar.php');
+        header('Location: ../models/Livro.php');
         break;
 
     case 'editar':
@@ -31,13 +32,13 @@ switch($acao)
             $_POST['ano']
         );
 
-        header('Location: ../views/livros/listar.php');
+        header('Location: ../models/Livro.php');
         break;
 
     case 'excluir':
 
         $livro->excluir($_GET['id']);
 
-        header('Location: ../views/livros/listar.php');
+        header('Location: ../models/Livro.php');
         break;
 }

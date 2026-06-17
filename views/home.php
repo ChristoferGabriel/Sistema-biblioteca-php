@@ -4,7 +4,7 @@ session_start();
 
 if(!isset($_SESSION['caixa'])){
 
-    header("Location: login.php");
+    header("Location: Login.php");
     exit;
 
 }
@@ -47,13 +47,13 @@ if(!isset($_SESSION['caixa'])){
 
 <ul>
     <li>
-        <a href="usuarios/cadastrar.php">
+        <a href="Usuario.php">
             Cadastrar Usuário
         </a>
     </li>
 
     <li>
-        <a href="usuarios/listar.php">
+        <a href="Usuario.php">
             Listar Usuários
         </a>
     </li>
@@ -63,13 +63,13 @@ if(!isset($_SESSION['caixa'])){
 
 <ul>
     <li>
-        <a href="emprestimos/cadastrar.php">
+        <a href="Emprestimo.php">
             Realizar Empréstimo
         </a>
     </li>
 
     <li>
-        <a href="emprestimos/listar.php">
+        <a href="Emprestimo.php">
             Listar Empréstimos
         </a>
     </li>
@@ -77,7 +77,7 @@ if(!isset($_SESSION['caixa'])){
 
 <hr>
 
-<a href="../controllers/logout.php">
+<a href="../controller/logout.php">
     Sair
 </a>
 

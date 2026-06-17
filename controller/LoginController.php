@@ -23,7 +23,10 @@ if($caixa && password_verify($senha, $caixa['senha'])){
 
     $_SESSION['caixa'] = $caixa['nome'];
 
-    header("Location: ../views/home.php");
+
+    echo "Login realizado com sucesso!";
+    exit;
+    //header("Location: ../views/home.php");
 
 }else{
 

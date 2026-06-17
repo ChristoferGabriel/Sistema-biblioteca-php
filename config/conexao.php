@@ -7,7 +7,7 @@ class Conexao {
         if (self::$instance === null) {
             try {
                 $host = 'localhost';
-                $dbname = 'seu_banco_de_dados';
+                $dbname = 'biblioteca';
                 $user = 'root';
                 $password = '';
                 $options = [
