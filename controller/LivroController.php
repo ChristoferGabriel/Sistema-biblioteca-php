@@ -1,44 +1,29 @@
 <?php
 
-require_once '../config/conexao.php';
+session_start();
+
+require_once "../config/conexao.php";
 
 $pdo = Conexao::getConexao();
 
-require_once '../models/Livro.php';
+$email = $_POST['email'];
+$senha = $_POST['senha'];
 
-$livro = new Livro($pdo);
+$sql = "SELECT * FROM caixa
+        WHERE email = :email";
 
-$acao = $_REQUEST['acao'] ?? '';
+$stmt = $pdo->prepare($sql);
 
-switch($acao)
-{
-    case 'cadastrar':
+$stmt->execute([
+    ':email' => $email
+]);
 
-        $livro->cadastrar(
-            $_POST['titulo'],
-            $_POST['autor'],
-            $_POST['ano']
-        );
+$caixa = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        header('Location: ../models/Livro.php');
-        break;
+if($caixa && password_verify($senha, $caixa['senha'])){
 
-    case 'editar':
+    $_SESSION['caixa'] = $caixa['nome'];
 
-        $livro->editar(
-            $_POST['id'],
-            $_POST['titulo'],
-            $_POST['autor'],
-            $_POST['ano']
-        );
-
-        header('Location: ../models/Livro.php');
-        break;
-
-    case 'excluir':
-
-        $livro->excluir($_GET['id']);
-
-        header('Location: ../models/Livro.php');
-        break;
-}
+    }
+    
+    header("Location: ../views/home.php");
